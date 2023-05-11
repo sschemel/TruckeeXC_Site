@@ -159,9 +159,8 @@
         }
     </script>
 </head>
-
 <body>
-	<form id="signupForm">
+	<form action="xcsignup.truckeexc.com" method="post">
 	  <div class="form-container">
 		<div class="column">
 		  <h2>Student Details:</h2>
@@ -192,44 +191,5 @@
 	  </div>
 	  <button type="submit">Submit</button>
 	</form>
-	<script>
-		document.getElementById("signupForm").addEventListener("submit", async (e) => {
-		  e.preventDefault();
-	  
-		  if (!validateForm(e)) return;
-	  
-		  const formData = new FormData();
-		  formData.append("studentName", document.getElementById("studentName").value);
-		  formData.append("studentEmail", document.getElementById("studentEmail").value);
-		  formData.append("studentPhone", document.getElementById("studentPhone").value);
-		  formData.append("motivation", document.getElementById("motivation").value);
-		  formData.append("parent1Name", document.getElementById("parent1Name").value);
-		  formData.append("parent1Email", document.getElementById("parent1Email").value);
-		  formData.append("parent1Contact", document.getElementById("parent1Contact").value);
-		  formData.append("parent2Name", document.getElementById("parent2Name").value);
-		  formData.append("parent2Email", document.getElementById("parent2Email").value);
-		  formData.append("parent2Contact", document.getElementById("parent2Contact").value);
-	  
-		  const response = await fetch("https://dbupdatesignup.stratenschemel.workers.dev", {
-			method: "POST",
-			body: formData,
-		  });
-	  
-		  const result = await response.json();
-		  alert(result.message);
-	  
-		  if (response.ok) {
-			document.getElementById("signupForm").reset();
-	  
-			// Change the submit button to a close button
-			const submitButton = document.querySelector("#signupForm button[type='submit']");
-			submitButton.textContent = "Close";
-			submitButton.onclick = () => {
-			  // Add your close function here, e.g., closePopup('signupForm');
-			};
-		  }
-		});
-	  </script>	  
   </body>
-
 </html>
